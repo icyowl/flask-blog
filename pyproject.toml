@@ -1,0 +1,22 @@
+[build-system]
+requires = ['setuptools']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'flask-blog'
+version = '2025.0.1'
+dependencies = [
+  'flask',
+  'gunicorn',
+  'Flask-WTF',
+  'contentful',
+  'markdown',
+  'pygments'
+]
+
+[project.optional-dependencies]
+test = ['pytest', 'pytest-cov']
+dev = ['flake8', 'mypy']
+
+[tool.setuptools.packages.find]
+namespaces = false

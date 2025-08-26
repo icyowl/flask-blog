@@ -1,0 +1,14 @@
+{# {% from "macros/meta.html" import render_meta %} #}
+{% macro render_blog_post(post, from_index=false) %}
+  <div class="blog-post">
+  {% if from_index %}
+    <h2><a href="/blog/{{ post.slug }}/{{ post.id }}">{{ post.title }}</a></h2>
+    <div class="meta">Posted on: {{ post.date.strftime('%Y-%m-%d') }}</div>
+    {{ post.body | safe }}
+  {% else %}
+    <h2>{{ post.title }}</h2>
+    <div class="meta">Posted on: {{ post.date.strftime('%Y-%m-%d') }}</div>
+    {{ post.body | safe }}
+  {% endif %}
+  </div>
+{% endmacro %}

@@ -1,0 +1,126 @@
+:root {
+  --font-european: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', Calibri, sans-serif;
+  --moss: #688990;
+  --faint: #e0e7e8;
+  --snow: #fafafa;
+
+  --bg-github: #0d1117;
+  --fg-github: #e6edf3;
+
+  --primary: var(--snow);
+  --secondary: #01070A;
+  --accent: var(--moss);
+  --surface: var(--primary);
+}
+
+body {
+  background: var(--surface);
+}
+
+header {
+  padding: 1rem 2rem .5rem !important;
+}
+
+header h1 {
+  /* font-size: 2.625rem !important; */
+  font-size: 2.5rem !important;
+  margin-top: 1rem;
+}
+
+header nav ul li a {
+  color: var(--gray-dark) !important;
+  font-family: var(--font-european);
+}
+
+a:hover {
+  color: var(--moss) !important;
+}
+
+.active a {
+  color: var(--moss) !important;
+}
+
+div.page {
+  padding: 0 !important;
+}
+
+.wrapper-page {
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  background: #fff !important;
+}
+
+.wrapper-blog {
+  background: initial !important;
+  padding: 0;
+}
+
+.blog-post {
+  padding: .5rem 2rem;
+  margin-bottom: 1rem;
+  border-radius: 16px;
+  background: #fff;
+}
+
+footer {
+  margin-top: 1rem !important;
+}
+
+.pagination, .page-nav {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  margin-top: 1rem !important;
+}
+
+nav {
+  margin-left: .25rem;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  font-size: 90%;
+}
+
+footer a {
+  margin-left: .5rem;
+}
+
+.size-6 {
+  height: 20px;
+  width: 20px;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--secondary);
+}
+
+
+.codehilite {
+  border-radius: 8px;
+}
+
+/* pre {
+  margin-top: .5rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  line-height: var(--line-height);
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  background: var(--primary);
+  color: var(--secondary);
+}
+
+p code {
+  padding: 2px;
+  border-radius: 4px;
+  background: var(--primary) !important;
+} */
+

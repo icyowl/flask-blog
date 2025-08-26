@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% from "macros/blog.html" import render_blog_post %}
+{# {% from "macros/page-navigation.html" import render_page_navi %} #}
+{# {% block title %}{{ this.title }}{% endblock %} #}
+{% block body %}
+  {{ render_blog_post(item) }}
+  {# {{ render_page_navi(this) }} #}
+{% endblock %}

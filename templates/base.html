@@ -1,0 +1,36 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="/static/style.css">
+<link rel="stylesheet" href="/static/one_dark.css">
+<link rel="stylesheet" href="/static/bits_of_moss.css">
+<link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+<title>{% block title %}Welcome{% endblock %} — Icyowl blog</title>
+<body>
+  <header>
+      <h1>Icyowl blog</h1>
+    <nav>
+      <ul class="nav navbar-nav">
+        <li {% if request.path == '/' %} class="active" {% endif %}>
+          <a href="/">Home</a>
+        </li>
+        {% for href, title in [
+          ['/blog', 'Blog'],
+          ['#', 'Tags'],
+          ['/about', 'About']
+        ] %}
+          <li {% if request.path.startswith(href) %} class="active" {% endif %}>
+            <a href="{{ href }}">{{ title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </header>
+  <div class="page">
+    {% block body %}{% endblock %}
+  </div>
+  <footer>
+    <div>Aki &copy; 2025 Powererd by Flask.</div>
+    <a href="{{ url_for('auth.logout') }}">Sign out</a>
+  </footer>
+</body>
