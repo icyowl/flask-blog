@@ -17,7 +17,8 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign in')
 
 def get_users():
-    json_path = os.path.join(current_app.instance_path, 'users.json')
+    # json_path = os.path.join(current_app.instance_path, 'users.json')
+    json_path = os.path.join(os.path.dirname(__file__), 'users.json')
     users = json.load(open(json_path, 'r'))
     return users
 
