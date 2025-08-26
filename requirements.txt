@@ -5,8 +5,6 @@ click==8.2.1
 colorama==0.4.6
 contentful==2.4.0
 Flask==3.1.2
-# Editable install with no version control (flask-blog==2025.0.1)
--e c:\users\frog7\python\flask-blog
 Flask-WTF==1.2.2
 gunicorn==23.0.0
 idna==3.10
