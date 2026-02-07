@@ -3,12 +3,26 @@
   <div class="blog-post">
   {% if from_index %}
     <h2><a href="/blog/{{ post.slug }}/{{ post.id }}">{{ post.title }}</a></h2>
-    <div class="meta">Posted on: {{ post.date.strftime('%Y-%m-%d') }}</div>
     {{ post.body | safe }}
+      <div class="meta idx">
+        <div>Posted: {{ post.posted.strftime('%Y-%m-%d') }}</div>
+        <div>Modified: {{ post.modified.strftime('%Y-%m-%d') }}</div>
+      </div>
   {% else %}
+    {% set prev = "/blog/" + post.prev_id %}
+    {% set next = "/blog/" + post.next_id %}
     <h2>{{ post.title }}</h2>
-    <div class="meta">Posted on: {{ post.date.strftime('%Y-%m-%d') }}</div>
+    <div class="meta">
+      <div class="item"><a href="{{ prev }}"><</a></div>
+      <div class="item">Posted: {{ post.posted.strftime('%Y-%m-%d') }}</div>
+      <div class="item">Modified: {{ post.modified.strftime('%Y-%m-%d') }}</div>
+      <div class="item"><a href="{{ next }}">></a></div>
+    </div>
     {{ post.body | safe }}
+    <div class="paging">
+      <div class="item"><a href="{{ prev }}">< Previous</a></div>
+      <div class="item"><a href="{{ next }}">Next ></a></div>
+    </div>
   {% endif %}
   </div>
 {% endmacro %}

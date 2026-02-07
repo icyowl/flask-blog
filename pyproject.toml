@@ -18,5 +18,8 @@ dependencies = [
 test = ['pytest', 'pytest-cov']
 dev = ['flake8', 'mypy']
 
+[tool.setuptools.package-dir]
+flask_blog = 'flask_blog'
+
 [tool.setuptools.packages.find]
 namespaces = false

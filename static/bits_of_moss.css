@@ -3,6 +3,8 @@
   --moss: #688990;
   --faint: #e0e7e8;
   --snow: #fafafa;
+  --moss-translucent: #68899080;
+  /* --snow: #f8f8ff; */
 
   --bg-github: #0d1117;
   --fg-github: #e6edf3;
@@ -18,13 +20,13 @@ body {
 }
 
 header {
-  padding: 1rem 2rem .5rem !important;
+  padding: 1rem 2rem !important;
 }
 
 header h1 {
   /* font-size: 2.625rem !important; */
   font-size: 2.5rem !important;
-  margin-top: 1rem;
+  margin-top: .5rem;
 }
 
 header nav ul li a {
@@ -82,10 +84,57 @@ nav {
   justify-content: space-between;
 }
 
+.meta {
+  display: flex;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: var(--moss-translucent);
+}
+
+.meta.idx {
+  border: none;
+}
+
+.meta.idx * {
+  margin-right: 0.5rem;
+}
+
+
+
+.meta a {
+  text-decoration: none;
+  color: var(--moss-translucent);
+}
+
+.meta .item {
+  margin-bottom: 0.5rem;
+}
+
+.meta .item:first-child {
+  margin-right: 0.25rem;
+}
+
+.meta .item:nth-child(2) {
+  margin-right: 0.5rem;
+}
+
+.meta .item:last-child {
+  margin-left: auto;
+}
+
+.paging {
+  display: flex;
+  justify-content: space-between;
+}
+
+.paging a {
+  text-decoration: none;
+}
+
 footer {
   display: flex;
   align-items: center;
-  font-size: 90%;
+  font-size: 98%;
 }
 
 footer a {
@@ -100,6 +149,11 @@ footer a {
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--secondary);
+}
+
+h5 {
+  margin-left: .5rem;
+  margin-bottom: -1rem;
 }
 
 

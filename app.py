@@ -8,14 +8,24 @@ import markdown
 app = Flask(__name__)
 
 app.secret_key = 'dev'
+
+import auth
 app.register_blueprint(auth.bp)
 
-
 client = Client(
-  'w6sn00a0nw61',
-  'sXe4bg57oay8cu-2MFzjoF6o3F-lH4va_r4DaK3hIFw',
-  environment='master'  # Optional - it defaults to 'master'.
+    'w6sn00a0nw61',
+    'sXe4bg57oay8cu-2MFzjoF6o3F-lH4va_r4DaK3hIFw',
+    environment='master'  # Optional - it defaults to 'master'.
 )
+
+def get_next_id(date):
+    entry = client.entries({
+        'content_type': 'blogPost',
+        'fields.date[lt]': date,
+        'order': 'fields.date',
+        'limit': 1
+    })
+    return entry.id
 
 # @app.before_request
 # def on_every_request():
@@ -36,27 +46,58 @@ def blog():
     entries = client.entries()
     items = []
     for entry in entries:
-        id = entry.id
-        title = entry.title
-        slug = entry.slug
-        date = entry.date
+
         text = entry.content
         excerpt = text.split('\n\n')[0]
-        # print(excerpt)
         md = markdown.markdown(excerpt, extensions=['fenced_code', 'codehilite'])
-        items.append({ 'id': id, 'title': title,'slug': slug, 'date': date, 'body': md})
-        sorted_items = sorted(items, key=lambda x: x['date'], reverse=True)
+
+        item = {
+            'id': entry.id,
+            'title': entry.title,
+            'posted': entry.date,
+            'modified': entry.update,
+            'body': md
+        }
+
+        items.append(item)
+        sorted_items = sorted(items, key=lambda x: x['posted'], reverse=True)
+
     return render_template('blog.html', items=sorted_items)
 
 
-@app.route('/blog/<slug>/<id>')
-def blog_post(slug, id):
+@app.route('/blog/<id>')
+def blog_post(id):
     entry = client.entry(id)
-    title = entry.title
     date = entry.date
+
+    prev_entries = client.entries({
+        'content_type': 'blogPost',
+        'fields.date[gt]': date,
+        'order': 'fields.date',
+        'limit': 1
+    })
+
+    next_entries = client.entries({
+        'content_type': 'blogPost',
+        'fields.date[lt]': date,
+        'order': '-fields.date',
+        'limit': 1
+    })
+    
+    prev_id = prev_entries[0].id if prev_entries else ''
+    next_id = next_entries[0].id if next_entries else '' 
+
     text = entry.content
-    md = markdown.markdown(text, extensions=['fenced_code', 'codehilite'])
-    item = {'title': title, 'date': date, 'body': md}
+    md = markdown.markdown(text, extensions=['fenced_code', 'codehilite', 'tables'])
+
+    item = {
+            'title': entry.title, 
+            'posted': date,
+            'modified': entry.update,
+            'prev_id': prev_id,
+            'next_id': next_id,
+            'body': md
+        }
     return render_template('blog-post.html', item=item)
 
 

@@ -1,22 +1,21 @@
 blinker==1.9.0
 certifi==2025.8.3
 charset-normalizer==3.4.3
-click==8.2.1
-colorama==0.4.6
-contentful==2.4.0
+click==8.3.0
+contentful==2.5.0
 Flask==3.1.2
+-e git+https://github.com/icyowl/flask-blog.git@5663c8d7bc98187f8648981fe6180e9171aa32f1#egg=flask_blog
 Flask-WTF==1.2.2
 gunicorn==23.0.0
 idna==3.10
 itsdangerous==2.2.0
 Jinja2==3.1.6
-Markdown==3.8.2
-MarkupSafe==3.0.2
+Markdown==3.9
+MarkupSafe==3.0.3
 packaging==25.0
 Pygments==2.19.2
 python-dateutil==2.9.0.post0
 requests==2.32.5
-setuptools==80.9.0
 six==1.17.0
 urllib3==2.5.0
 Werkzeug==3.1.3

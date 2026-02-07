@@ -10,7 +10,7 @@
   --font-weight-bold: 600;
 
   --font-size-1: calc(.125rem * 14); /* 1.75rem */
-  --font-size-2: calc(.125rem * 12); /* 1.5rem */
+  --font-size-2: calc(.125rem * 12); /* 1.625rem */
   --font-size-3: calc(.125rem * 10); /* 1.25rem */
   --font-size-4: calc(.125rem * 9);  /* 1.125rem */
   --font-size-5: calc(.125rem * 8);  /*     1rem */
@@ -67,7 +67,7 @@ h2, h3 {
 }
 
 h2 { margin-top: .25rem;}
-h3 { margin-top: 1.5rem;}
+h3 { margin-top: 2rem;}
 
 /* Prose */
 
@@ -76,6 +76,25 @@ p {
   margin: 0 0 1rem 0;
   padding: 0;
 }
+
+ul, ol {
+  padding: 0 0 0 2rem;
+  margin: 0;
+}
+
+ol li {
+  padding-left: .125rem;
+}
+
+li:first-child {
+  margin-top: .25rem;
+}
+
+li:last-child {
+  margin-bottom: 1rem;
+}
+
+
 
 blockquote {
   border-left: 4px solid var(--accent);
@@ -165,6 +184,7 @@ header {
 header nav ul li a {
   color: var(--secondary);
   font-family: var(--font-heading);
+  font-size: var(--font-size-4);
   font-weight: var(--font-weight-bold);
   text-decoration: none;
 }
@@ -174,7 +194,14 @@ header nav ul li a {
 }
 
 .meta {
-  margin: 0 0 .5rem 0;
+  margin: 0 0 1rem 0;
+  font-family: var(--font-european);
+  font-size: var(--font-size-6);
+  color: var(--gray-dark);
+}
+
+.paging {
+  margin-top: 2rem;
   font-family: var(--font-european);
   font-size: var(--font-size-6);
   color: var(--gray-dark);

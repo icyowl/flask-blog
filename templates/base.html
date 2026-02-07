@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="/static/style.css">
-<link rel="stylesheet" href="/static/one_dark.css">
+<link rel="stylesheet" href="/static/one-dark.css">
 <link rel="stylesheet" href="/static/bits_of_moss.css">
 <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
 <title>{% block title %}Welcome{% endblock %} — Icyowl blog</title>
@@ -16,7 +16,7 @@
         </li>
         {% for href, title in [
           ['/blog', 'Blog'],
-          ['#', 'Tags'],
+          ['#', 'Projects'],
           ['/about', 'About']
         ] %}
           <li {% if request.path.startswith(href) %} class="active" {% endif %}>
