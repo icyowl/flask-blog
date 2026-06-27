@@ -2,15 +2,15 @@
 {% macro render_blog_post(post, from_index=false) %}
   <div class="blog-post">
   {% if from_index %}
-    <h2><a href="/blog/{{ post.slug }}/{{ post.id }}">{{ post.title }}</a></h2>
+    <h2><a href="/blog/{{ post.content_type }}/{{ post.id }}">{{ post.title }}</a></h2>
     {{ post.body | safe }}
       <div class="meta idx">
         <div>Posted: {{ post.posted.strftime('%Y-%m-%d') }}</div>
         <div>Modified: {{ post.modified.strftime('%Y-%m-%d') }}</div>
       </div>
   {% else %}
-    {% set prev = "/blog/" + post.prev_id %}
-    {% set next = "/blog/" + post.next_id %}
+    {% set prev = "/blog/" + post.content_type + "/" + post.prev_id %}
+    {% set next = "/blog/" + post.content_type + "/" + post.next_id %}
     <h2>{{ post.title }}</h2>
     <div class="meta">
       <div class="item"><a href="{{ prev }}"><</a></div>

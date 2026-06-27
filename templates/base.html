@@ -15,9 +15,13 @@
           <a href="/">Home</a>
         </li>
         {% for href, title in [
-          ['/blog', 'Blog'],
-          ['#', 'Projects'],
-          ['/about', 'About']
+          ['/blog/blogPost', 'Blog'],
+          ['/blog/book', 'Book'],
+          ['/blog/recipe', 'Recipe'],
+          ['/blog/picture', 'Picture'],
+          ['/blog/garden', 'Garden'],
+          ['/blog/diy', 'Diy'],
+          ['/blog/verse', 'Verse']
         ] %}
           <li {% if request.path.startswith(href) %} class="active" {% endif %}>
             <a href="{{ href }}">{{ title }}</a>

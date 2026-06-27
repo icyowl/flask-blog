@@ -4,7 +4,7 @@ charset-normalizer==3.4.3
 click==8.3.0
 contentful==2.5.0
 Flask==3.1.2
--e git+https://github.com/icyowl/flask-blog.git@5663c8d7bc98187f8648981fe6180e9171aa32f1#egg=flask_blog
+-e git+https://github.com/icyowl/flask-blog.git@b50d80c01e7bb77af451b61f2af0fc4edd6642aa#egg=flask_blog
 Flask-WTF==1.2.2
 gunicorn==23.0.0
 idna==3.10

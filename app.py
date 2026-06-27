@@ -18,15 +18,6 @@ client = Client(
     environment='master'  # Optional - it defaults to 'master'.
 )
 
-def get_next_id(date):
-    entry = client.entries({
-        'content_type': 'blogPost',
-        'fields.date[lt]': date,
-        'order': 'fields.date',
-        'limit': 1
-    })
-    return entry.id
-
 # @app.before_request
 # def on_every_request():
 #     entries = client.entries()
@@ -41,59 +32,62 @@ def index():
     return render_template('page.html', title=title, body=md)
 
 
-@app.route('/blog')
-def blog():
-    entries = client.entries()
+@app.route('/blog/<content_type>')
+def blog(content_type):
+    entries = client.entries({'content_type': content_type})
     items = []
     for entry in entries:
 
-        text = entry.content
+        text = entry.body
         excerpt = text.split('\n\n')[0]
         md = markdown.markdown(excerpt, extensions=['fenced_code', 'codehilite'])
-
+        # print('Posted:', entry.posted, 'Modified:', entry.modified)
         item = {
+            'content_type': content_type,
             'id': entry.id,
             'title': entry.title,
-            'posted': entry.date,
-            'modified': entry.update,
+            'posted': entry.posted,
+            'modified': entry.modified,
             'body': md
         }
 
         items.append(item)
-        sorted_items = sorted(items, key=lambda x: x['posted'], reverse=True)
+
+    sorted_items = sorted(items, key=lambda x: x['posted'], reverse=True) if items else []
 
     return render_template('blog.html', items=sorted_items)
 
 
-@app.route('/blog/<id>')
-def blog_post(id):
+@app.route('/blog/<content_type>/<id>')
+def blog_post(content_type, id):
     entry = client.entry(id)
-    date = entry.date
+    posted = entry.posted
 
     prev_entries = client.entries({
-        'content_type': 'blogPost',
-        'fields.date[gt]': date,
-        'order': 'fields.date',
+        'content_type': content_type,
+        'fields.posted[gt]': posted,
+        'order': 'fields.posted',
         'limit': 1
     })
 
     next_entries = client.entries({
-        'content_type': 'blogPost',
-        'fields.date[lt]': date,
-        'order': '-fields.date',
+        'content_type': content_type,
+        'fields.posted[lt]': posted,
+        'order': '-fields.posted',
         'limit': 1
     })
     
     prev_id = prev_entries[0].id if prev_entries else ''
     next_id = next_entries[0].id if next_entries else '' 
 
-    text = entry.content
+    text = entry.body
     md = markdown.markdown(text, extensions=['fenced_code', 'codehilite', 'tables'])
 
     item = {
-            'title': entry.title, 
-            'posted': date,
-            'modified': entry.update,
+            'title': entry.title,
+            'content_type': content_type,
+            'posted': posted,
+            'modified': entry.modified,
             'prev_id': prev_id,
             'next_id': next_id,
             'body': md
